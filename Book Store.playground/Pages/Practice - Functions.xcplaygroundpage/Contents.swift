@@ -60,30 +60,28 @@ func distinctAuthors() -> Set<String> {
 // or this
 //func distinctAuthors() -> [String] { ... }
 // then
-//bookStore.setDataSource(authorsGetter: distinctAuthors())
+bookStore.setDataSource(authorsGetter: distinctAuthors)
 
 func totalBookPrice() -> Double {
-    var totalprice : Double = 0
+    var totalPrice : Double = 0
     for index in 0..<books.count {
         if books[index]["price"] != nil {
-            totalprice = totalprice + Double(books[index]["price"]!)!
+            totalPrice = totalPrice + Double(books[index]["price"]!)!
         }
     }
-    return totalprice
+    return totalPrice
 }
 
-//bookStore.setDataSource(priceCalculator: totalBookPrice())
+bookStore.setDataSource(priceCalculator: totalBookPrice)
 
 func getBook(at index: Int) -> (title: String, author: String, price: Double)? {
-    var book:(title: String, author: String, price: Double)
     if index < books.count {
-        book = ("books[index][\"title\"]!","books[index][\"author\"]!",Double(books[index]["price"]!)!)
+        return (books[index]["title"]!,books[index]["author"]!,Double(books[index]["price"]!)!)
     }else{
         return nil
     }
-    return book
 }
-//bookStore.setDataSource(bookGetter: getBook(at:))
+bookStore.setDataSource(bookGetter: getBook(at:))
 
 /*:
 
